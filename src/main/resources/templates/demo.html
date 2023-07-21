@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .header{background:rgb(0, 178, 255);color:#fff;}
+        #lblCartCount {
+            font-size: 12px;
+            background: #ff0000;
+            color: #fff;
+            padding: 0 5px;
+            vertical-align: top;
+            margin-left: -10px;
+        }
+        .badge {
+            padding-left: 9px;
+            padding-right: 9px;
+            -webkit-border-radius: 9px;
+            -moz-border-radius: 9px;
+            border-radius: 9px;
+        }
+
+        .label-warning[href],
+        .badge-warning[href] {
+            background-color: #c67605;
+        }
+    </style>
+</head>
+<body>
+
+<a th:href="@{getsession}"> <i class="fa" style="font-size:50px">&#xf07a;</i></a>
+<span class='badge badge-warning' id='lblCartCount' th:text="${session.count.size()}"> </span>
+
+<script>
+    let cartcount = $("#lblCartCount").text();
+    alert(cartcount)
+</script>
+</body>
+</html>

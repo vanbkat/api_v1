@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Student</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Striped Rows</h2>
+    <a th:href="@{save}">Add</a>
+    <form th:action="@{search}" method="post">
+        <input name="txt_search" th:value="${txt_search}">
+        <button type="submit" value="Save">Save</button>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Image</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="student : ${list_student}">
+            <td th:text="${student.getId()}"></td>
+            <td th:text="${student.getName()}"></td>
+            <td th:text="${student.getAddress()}">/td>
+            <td><img th:src="${student.getImage()}" alt="no image" width="200px" height="200px"></td>
+        </tr>
+
+        </tbody>
+    </table>
+    <ul class="pagination" th:each="i : ${#numbers.sequence(1,totapages)}">
+        <th:block th:switch="${i != currentpage }">
+            <li><a th:case="true" th:href="@{'/homepage?page='+${i}}">[[${i}]]</a></li>
+            <li class="active"><a th:case="false" class="active">[[${i}]]</a></li>
+        </th:block>
+
+    </ul>
+</div>
+
+</body>
+</html>
